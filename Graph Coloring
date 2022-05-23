@@ -75,5 +75,11 @@ if __name__ == '__main__':
 
 	if (not graphColoring(graph, m, 0, color)):
 		print ("Solution does not exist")
+		
+Output:		
+Solution Exists: Following are the assigned colors 
+  1  2  3  2
 
 # This code is contributed by mohit kumar 29
+Time Complexity: O(m^V). 
+Space Complexity: O(V)
