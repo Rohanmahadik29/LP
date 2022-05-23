@@ -1,66 +1,45 @@
-# Python3 Program to print BFS traversal
-# from a given source vertex. BFS(int s)
-# traverses vertices reachable from s.
-from collections import defaultdict
+graph = {
+  '5' : ['3','7'],
+  '3' : ['2', '4'],
+  '7' : ['8'],
+  '2' : [],
+  '4' : ['8'],
+  '8' : []
+}
 
-# This class represents a directed graph
-# using adjacency list representation
-class Graph:
+visited = [] # List for visited nodes.
+queue = []     #Initialize a queue
 
-	# Constructor
-	def __init__(self):
+def bfs(visited, graph, node): #function for BFS
+  visited.append(node)
+  queue.append(node)
 
-		# default dictionary to store graph
-		self.graph = defaultdict(list)
+  while queue:          # Creating loop to visit each node
+    m = queue.pop(0) 
+    print (m, end = " ") 
 
-	# function to add an edge to graph
-	def addEdge(self,u,v):
-		self.graph[u].append(v)
+    for neighbour in graph[m]:
+      if neighbour not in visited:
+        visited.append(neighbour)
+        queue.append(neighbour)
 
-	# Function to print a BFS of graph
-	def BFS(self, s):
+# Driver Code
+print("Following is the Breadth-First Search")
+bfs(visited, graph, '5')    # function calling
 
-		# Mark all the vertices as not visited
-		visited = [False] * (max(self.graph) + 1)
 
-		# Create a queue for BFS
-		queue = []
+In the above code, first, we will create the graph for which we will use the breadth-first search. After creation, we will create two lists, one to store the visited node of the graph and another one for storing the nodes in the queue.
 
-		# Mark the source node as
-		# visited and enqueue it
-		queue.append(s)
-		visited[s] = True
+After the above process, we will declare a function with the parameters as visited nodes, the graph itself and the node respectively. And inside a function, we will keep appending the visited and queue lists.
 
-		while queue:
+Then we will run the while loop for the queue for visiting the nodes and then will remove the same node and print it as it is visited.
 
-			# Dequeue a vertex from
-			# queue and print it
-			s = queue.pop(0)
-			print (s, end = " ")
+At last, we will run the for loop to check the not visited nodes and then append the same from the visited and queue list.
 
-			# Get all adjacent vertices of the
-			# dequeued vertex s. If a adjacent
-			# has not been visited, then mark it
-			# visited and enqueue it
-			for i in self.graph[s]:
-				if visited[i] == False:
-					queue.append(i)
-					visited[i] = True
+As the driver code, we will call the user to define the bfs function with the first node we wish to visit.
 
-# Driver code
+Output
+The output of the above code will be as follow:
 
-# Create a graph given in
-# the above diagram
-g = Graph()
-g.addEdge(0, 1)
-g.addEdge(0, 2)
-g.addEdge(1, 2)
-g.addEdge(2, 0)
-g.addEdge(2, 3)
-g.addEdge(3, 3)
-
-print ("Following is Breadth First Traversal"
-				" (starting from vertex 2)")
-g.BFS(2)
-
-# This code is contributed by Neelam Yadav
+ Following is the Breadth-First Search
+ 5 3 7 2 4 8
